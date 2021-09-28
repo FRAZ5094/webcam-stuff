@@ -1,0 +1,11 @@
+v4l2-ctl --list-devices #lists all usb devices
+v4l2-ctl -d /dev/video0 --list-ctrls #lists settings for /video0
+v4l2-ctl -d /dev/video0 --set-ctrl=zoom_absolute=500
+
+#pull out setting name
+v4l2-ctl -d /dev/video0 --list-ctrls | awk '{print$1}'
+#pull out default value for that setting
+v4l2-ctl -d /dev/video0 --list-ctrls | grep -o 'default=[0-9]*'
+
+#write script to auto set all settings to default
+#write script to set follow face through pan (tilt doesn't seem to work)
